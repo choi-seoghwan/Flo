@@ -1,9 +1,10 @@
-package com.example.flo
+package com.example.flo.intro
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.example.flo.view.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
