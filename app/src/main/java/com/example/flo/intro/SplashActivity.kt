@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.example.flo.view.MainActivity
+import com.example.flo.view.MainTabActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         Handler().postDelayed({ //delay를 위한 handler
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainTabActivity::class.java))
             finish()
         }, SPLASH_VIEW_TIME)
     }

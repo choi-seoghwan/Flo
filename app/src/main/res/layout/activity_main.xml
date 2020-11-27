@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".view.MainActivity">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_margin="12dp">
-            <Button
-                android:id="@+id/main_activity_search_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/ic_search_black_24dp"
-                android:text="SEARCH"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/main_activity_search_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
-    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+<!--        <com.skplanet.musicmate.ui.view.sliding.SlidingUpPanelLayout-->
+<!--            android:id="@id/slidingLayout"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="fill_parent"-->
+<!--            android:gravity="bottom"-->
+<!--            android:tag="binding_1"-->
+<!--            sothree:umanoDragView="@id/dragView"-->
+<!--            sothree:umanoFadeColor="@android:color/transparent"-->
+<!--            sothree:umanoOverlay="true"-->
+<!--            sothree:umanoPanelHeight="@dimen/main_control_height"-->
+<!--            sothree:umanoShadowHeight="0.0dip">-->
+
+            <FrameLayout
+                android:id="@+id/main_screen"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+<!--            <com.skplanet.musicmate.ui.mainplayer.MainPlayerLayout-->
+<!--                android:id="@id/mainPlayer"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/gm_player_bg" />-->
+
+<!--        </com.skplanet.musicmate.ui.view.sliding.SlidingUpPanelLayout>-->
+
+        <com.example.flo.view.ui.MainTabLayout
+            android:id="@+id/main_tab"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/main_tab_height"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
 </layout>

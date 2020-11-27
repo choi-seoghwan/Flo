@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="not_use_tab_color">#ff888888</color>
+    <color name="use_tab_color">#ffffffff</color>
+
+
+
+
+    <color name="gm_miniplayer_bg">#f7161616</color>
+    <color name="gm_ffffff_07">#11ffffff</color>
+    <color name="gm_mini_player_progress">#ff3f3fff</color>
+    <color name="text_color_03">#ff989898</color>
+    <color name="text_color_06">#ffffffff</color>
 </resources>

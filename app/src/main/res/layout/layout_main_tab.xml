@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/main_tab_height"
+        android:background="@android:color/black"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/mainTab_home_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mainTab_home_image"
+                android:layout_width="30.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4.0dip"
+                android:src="@drawable/main_tab_recommend"/>
+
+            <TextView
+                android:id="@+id/mainTab_home_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="4.0dip"
+                android:text="@string/home"
+                android:textColor="@color/not_use_tab_color"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mainTab_browser_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mainTab_browser_image"
+                android:layout_width="30.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4.0dip"
+                android:src="@drawable/main_tab_browse"/>
+
+            <TextView
+                android:id="@+id/mainTab_browser_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="4.0dip"
+                android:text="@string/browse"
+                android:textColor="@color/not_use_tab_color"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mainTab_search_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mainTab_search_image"
+                android:layout_width="30.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4.0dip"
+                android:src="@drawable/main_tab_search"/>
+
+            <TextView
+                android:id="@+id/mainTab_search_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="4.0dip"
+                android:text="@string/search"
+                android:textColor="@color/not_use_tab_color"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mainTab_my_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mainTab_my_image"
+                android:layout_width="30.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4.0dip"/>
+
+            <TextView
+                android:id="@+id/mainTab_my_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="4.0dip"
+                android:text="@string/my"
+                android:textColor="@color/not_use_tab_color"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

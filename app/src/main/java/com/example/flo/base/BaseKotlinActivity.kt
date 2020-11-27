@@ -9,12 +9,12 @@ import com.google.android.material.snackbar.Snackbar
 abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> : AppCompatActivity() {
 
     lateinit var viewDataBinding: T
+    lateinit var binding: T
 
     abstract val layoutResourceId: Int
     abstract val viewModel: R
 
     /**
-     * 레이아웃을 띄운 직후 호출.
      * 뷰나 액티비티의 속성 등을 초기화.
      */
     abstract fun initStartView()
@@ -25,8 +25,7 @@ abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> 
     abstract fun initDataBinding()
 
     /**
-     * 바인딩 이후에 할 일을 여기에 구현.
-     * 클릭 리스너도 이곳에서 설정.
+     * 클릭 리스너
      */
     abstract fun initAfterBinding()
 
@@ -35,6 +34,7 @@ abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding = DataBindingUtil.inflate(layoutInflater,layoutResourceId,null,false)
         viewDataBinding = DataBindingUtil.setContentView(this, layoutResourceId)
         snackbarObserving()
         initStartView()
@@ -50,6 +50,4 @@ abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> 
             Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
         }
     }
-
-
 }

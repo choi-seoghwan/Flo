@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainTabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>

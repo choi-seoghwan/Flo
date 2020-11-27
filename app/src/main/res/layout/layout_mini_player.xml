@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:tag="layout/layout_mini_player_0">
+
+    <LinearLayout
+        android:id="@+id/playerLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/miniplayer_height"
+        android:background="@color/gm_miniplayer_bg"
+        android:orientation="vertical"
+        android:tag="binding_1">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2.0dip">
+
+            <View
+                android:id="@+id/view_progress_back"
+                android:layout_width="fill_parent"
+                android:layout_height="2.0dip"
+                android:background="@color/gm_ffffff_07" />
+
+            <View
+                android:id="@+id/view_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="2.0dip"
+                android:background="@color/gm_mini_player_progress"
+                android:tag="binding_2" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/miniplayer_button_height">
+
+            <LinearLayout
+                android:id="@+id/miniPlayerControllLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/miniplayer_button_height"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="33.0dip"
+                    android:layout_height="45.0dip"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/talkback_prev"
+                    android:src="@drawable/miniplayer_previous"
+                    android:tag="binding_3" />
+
+                <ImageButton
+                    android:layout_width="43.0dip"
+                    android:layout_height="45.0dip"
+                    android:layout_marginLeft="4.0dip"
+                    android:layout_marginRight="4.0dip"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/miniplayer_play"
+                    android:tag="binding_4" />
+
+                <ImageButton
+                    android:layout_width="33.0dip"
+                    android:layout_height="45.0dip"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/talkback_next"
+                    android:src="@drawable/miniplayer_next"
+                    android:tag="binding_5" />
+
+                <ImageButton
+                    android:layout_width="59.0dip"
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/talkback_playlist_view"
+                    android:paddingLeft="16.0dip"
+                    android:paddingTop="9.0dip"
+                    android:paddingRight="16.0dip"
+                    android:paddingBottom="9.0dip"
+                    android:src="@drawable/miniplayer_playlist"
+                    android:tag="binding_6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/miniPlayerControllLayout"
+                android:orientation="horizontal"
+                android:tag="binding_7">
+
+                <RelativeLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20.0dip"
+                        android:orientation="vertical"
+                        android:tag="binding_8">
+
+                        <TextView
+                            android:id="@+id/song_title"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:ellipsize="marquee"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/sans_medium"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:tag="binding_9"
+                            android:textColor="@color/text_color_06"
+                            android:textSize="14.0dip"
+                            tools:ignore="EllipsizeMaxLines">
+
+                            <requestFocus
+                                android:duplicateParentState="true"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true" />
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sans_medium"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:tag="binding_10"
+                            android:textColor="@color/text_color_03"
+                            android:textSize="11.0dip" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/no_song_title"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20.0dip"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/sans_medium"
+                        android:tag="binding_11"
+                        android:textColor="@color/text_color_03"
+                        android:textSize="13.0dip" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

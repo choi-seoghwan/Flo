@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">Flo</string>
+    <string name="app_name">FLO</string>
+
+    <string name="home">홈</string>
+    <string name="browse">둘러보기</string>
+    <string name="search">검색</string>
+    <string name="my">보관함</string>
+
+
+    <string name="talkback_repeat">재생목록 반복</string>
+    <string name="talkback_prev">이전곡</string>
+    <string name="talkback_next">다음곡</string>
+    <string name="talkback_shuffle">재생목록 셔플</string>
+
+    <string name="talkback_playlist_view">재생목록 열기</string>
+
 </resources>
