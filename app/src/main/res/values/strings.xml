@@ -14,4 +14,24 @@
 
     <string name="talkback_playlist_view">재생목록 열기</string>
 
+
+    <!-- main player Top -->
+    <string name="talkback_player_setting_open">재생환경 설정 열기</string>
+    <string name="talkback_equalize_open">이퀄라이저 열기</string>
+    <string name="playlist_title">재생목록</string>
+    <string name="talkback_player_close">플레이어 닫기</string>
+
+    <string name="talkback_more">더보기</string>
+    <string name="move_lyric">전체 가사 보기</string>
+    <string name="story_share_popup_title">스토리 공유하기</string>
+
+    <string name="talkback_like">좋아요</string>
+    <string name="talkback_dislike">이 곡 안듣기</string>
+
+
+
+    <!-- main player Bottom -->
+    <string name="similar_track">유사곡</string>
+
+
 </resources>

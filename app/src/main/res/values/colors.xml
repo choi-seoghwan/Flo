@@ -20,4 +20,16 @@
     <color name="gm_mini_player_progress">#ff3f3fff</color>
     <color name="text_color_03">#ff989898</color>
     <color name="text_color_06">#ffffffff</color>
+    <color name="text_color_08">#ff666666</color>
+
+
+    <color name="gm_player_bg">#ff0f0e0e</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="gm_3f3fff">#ff3f3fff</color>
+    <color name="gm_ffffff">#ffffffff</color>
+
+    <color name="gm_progressbar">#ff3f3fff</color>
+    <color name="text_color_06_16">#28ffffff</color>
+
 </resources>

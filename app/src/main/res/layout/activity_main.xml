@@ -8,36 +8,61 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-<!--        <com.skplanet.musicmate.ui.view.sliding.SlidingUpPanelLayout-->
-<!--            android:id="@id/slidingLayout"-->
-<!--            android:layout_width="fill_parent"-->
-<!--            android:layout_height="fill_parent"-->
-<!--            android:gravity="bottom"-->
-<!--            android:tag="binding_1"-->
-<!--            sothree:umanoDragView="@id/dragView"-->
-<!--            sothree:umanoFadeColor="@android:color/transparent"-->
-<!--            sothree:umanoOverlay="true"-->
-<!--            sothree:umanoPanelHeight="@dimen/main_control_height"-->
-<!--            sothree:umanoShadowHeight="0.0dip">-->
+        <com.sothree.slidinguppanel.SlidingUpPanelLayout
+            android:id="@+id/sliding_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom"
+            app:umanoDragView="@id/sliding_player"
+            app:umanoFadeColor="@android:color/transparent"
+            app:umanoOverlay="true"
+            app:umanoPanelHeight="@dimen/main_control_height"
+            app:umanoShadowHeight="0dp">
 
             <FrameLayout
                 android:id="@+id/main_screen"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="fill_parent"/>
 
-<!--            <com.skplanet.musicmate.ui.mainplayer.MainPlayerLayout-->
-<!--                android:id="@id/mainPlayer"-->
-<!--                android:layout_width="fill_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@color/gm_player_bg" />-->
+            <LinearLayout
+                android:id="@+id/sliding_player"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/gm_miniplayer_bg"
+                android:orientation="vertical">
 
-<!--        </com.skplanet.musicmate.ui.view.sliding.SlidingUpPanelLayout>-->
+                <com.google.android.exoplayer2.ui.PlayerView
+                    android:id="@+id/mini_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:show_timeout="0"
+                    app:hide_on_touch="false"
+                    app:controller_layout_id="@layout/layout_mini_player"/>
+
+                <com.google.android.exoplayer2.ui.PlayerView
+                    android:id="@+id/main_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:show_timeout="0"
+                    app:hide_on_touch="false"
+                    app:controller_layout_id="@layout/layout_main_player_track"/>
+                <!--
+                <include layout="@layout/layout_mini_player"
+                    android:id="@+id/mini_player"/>
+                -->
+                <!--
+                <include layout="@layout/layout_main_player_track"
+                    android:id="@+id/main_player"/>
+                -->
+            </LinearLayout>
+
+        </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
         <com.example.flo.view.ui.MainTabLayout
             android:id="@+id/main_tab"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/main_tab_height"
             android:layout_alignParentBottom="true" />
-
-    </RelativeLayout>
+   </RelativeLayout>
 </layout>

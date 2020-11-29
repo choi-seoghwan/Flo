@@ -42,6 +42,14 @@ dependencies {
     // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+    // sliding-up
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
+    // EXO-player
+    implementation "com.google.android.exoplayer:exoplayer-core:2.11.1"
+    implementation "com.google.android.exoplayer:exoplayer-ui:2.11.1"
+    implementation "com.google.android.exoplayer:exoplayer-hls:2.11.1"
+
     // androidx
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'

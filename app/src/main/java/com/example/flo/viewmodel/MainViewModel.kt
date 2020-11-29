@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.flo.base.BaseKotlinViewModel
 import com.example.flo.model.DataModel
-import com.example.flo.model.response.MainTabResponse
 import com.example.flo.model.response.MusicResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
