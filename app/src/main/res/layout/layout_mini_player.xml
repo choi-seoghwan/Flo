@@ -2,13 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/playerLayout"
+            android:id="@+id/mini_player_layout"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/gm_miniplayer_bg"
@@ -23,15 +24,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="2.0dip"
                     app:played_color="@color/gm_mini_player_progress"
-                    app:unplayed_color="@color/gm_ffffff_07"/>
+                    app:unplayed_color="@color/gm_ffffff_07" />
 
             </FrameLayout>
+
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/miniplayer_button_height">
 
                 <LinearLayout
-                    android:id="@+id/miniPlayerControllLayout"
+                    android:id="@+id/mini_player_controller"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/miniplayer_button_height"
                     android:layout_alignParentRight="true"
@@ -40,11 +42,12 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:id="@+id/mini_player_previous"
                         android:layout_width="33.0dip"
                         android:layout_height="45.0dip"
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/talkback_prev"
-                        android:src="@drawable/mini_player_previous"/>
+                        android:src="@drawable/mini_player_previous" />
 
                     <ImageButton
                         android:id="@+id/exo_play"
@@ -53,26 +56,28 @@
                         android:layout_marginLeft="4.0dip"
                         android:layout_marginRight="4.0dip"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/btn_miniplayer_play"/>
+                        android:src="@drawable/btn_miniplayer_play" />
 
                     <ImageButton
                         android:id="@+id/exo_pause"
+                        android:visibility="gone"
                         android:layout_width="43.0dip"
                         android:layout_height="45.0dip"
                         android:layout_marginLeft="4.0dip"
                         android:layout_marginRight="4.0dip"
-                        android:visibility="gone"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/btn_miniplayer_pause"/>
+                        android:src="@drawable/btn_miniplayer_pause" />
 
                     <ImageButton
+                        android:id="@+id/mini_player_next"
                         android:layout_width="33.0dip"
                         android:layout_height="45.0dip"
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/talkback_next"
-                        android:src="@drawable/mini_player_next"/>
+                        android:src="@drawable/mini_player_next" />
 
                     <ImageButton
+                        android:id="@+id/mini_player_list"
                         android:layout_width="59.0dip"
                         android:layout_height="fill_parent"
                         android:background="@android:color/transparent"
@@ -81,14 +86,14 @@
                         android:paddingTop="9.0dip"
                         android:paddingRight="16.0dip"
                         android:paddingBottom="9.0dip"
-                        android:src="@drawable/mini_player_playlist"/>
+                        android:src="@drawable/mini_player_playlist" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@id/miniPlayerControllLayout"
+                    android:layout_toLeftOf="@id/mini_player_controller"
                     android:orientation="horizontal">
 
                     <RelativeLayout

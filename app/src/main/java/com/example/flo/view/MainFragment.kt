@@ -1,6 +1,5 @@
 package com.example.flo.view
 
-
 import android.content.Context
 import android.util.Log
 import android.view.View
@@ -13,7 +12,6 @@ import com.example.flo.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class MainFragment: BaseKotlinFragment<FragmentMainBinding, MainViewModel>(){
     private val TAG = "MainFragment"
@@ -63,6 +61,7 @@ class MainFragment: BaseKotlinFragment<FragmentMainBinding, MainViewModel>(){
     override fun initAfterBinding() {
 
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainTabListener = context as MainTabListener

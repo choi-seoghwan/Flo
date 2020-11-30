@@ -1,29 +1,29 @@
 package com.example.flo.view
 
 import android.net.Uri
-import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.view.animation.TranslateAnimation
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.flo.MainLyricsAdapter
 import com.example.flo.R
 import com.example.flo.base.BaseKotlinActivity
 import com.example.flo.databinding.ActivityMainBinding
 import com.example.flo.view.ui.MainTabListener
 import com.example.flo.viewmodel.MainViewModel
-import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.TrackGroupArray
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
-import com.google.android.exoplayer2.util.Util
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_lyrics.*
+import kotlinx.android.synthetic.main.layout_main_player_bottom.*
 import kotlinx.android.synthetic.main.layout_main_player_track.*
 import kotlinx.android.synthetic.main.layout_main_tab.*
 import kotlinx.android.synthetic.main.layout_mini_player.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -34,23 +34,23 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>(), M
 
     private val TAG = "MainActivity"
 
-    private var player: SimpleExoPlayer? = null
-    private var playWhenReady = true
-    private var currentWindow = 0
-    private var playbackPosition = 0L
+    private val lyricsAdapter: MainLyricsAdapter by inject()
 
     override fun initStartView() {
-        // 각각 Fragment를 나눠서 만들어야 하지만, 현재 구현하고 싶은 주 기능이 아니기 때문에 남긴다.
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(main_screen.id, MainFragment.newInstance()).commit()
-
         viewModel.selectTab("HOME")
-        player = ExoPlayerFactory.newSimpleInstance(this.applicationContext)
-        mini_player.player = player
-        main_player.player = player
+
+        viewModel.setPlayer(this.applicationContext)
+        mainplayer_lyrics.run {
+            adapter = lyricsAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
     }
 
     override fun initDataBinding() {
+
+        // Main Tab setting(home, browser, search, my)
         viewModel.selectedTab.observe(this, Observer {
             it.let { tab ->
                 when (tab) {
@@ -61,69 +61,120 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>(), M
                 }
             }
         })
+
+        // Music Data setting( title, artist, album-image, lyrics, player(main, mini) )
         viewModel.musicResponseLiveData.observe(this, Observer {
             it.let { music ->
-                var mediaSource: MediaSource = buildMediaSource(Uri.parse(music.file))
-                //준비
-                player!!.prepare(mediaSource, true, false)
-                //스타트, 스탑
-                player!!.playWhenReady.and(playWhenReady)
+                // mini
                 mini_player_title.text = music.title
-                main_player_title.text = music.title
                 mini_player_singer.text = music.singer
+
+                // main
+                main_player_title.text = music.title
                 main_player_singer.text = music.singer
-                Picasso.with(this).load(music.image).placeholder(R.drawable.ic_image_black_24dp)
-                    .into(
-                        album_standard
-                    )
+                Picasso.with(this).load(music.image).into(album_standard)
+
+                //가사
+                viewModel.setLyricInfoList(music.lyrics)
+
+                //뮤직 플레이어
+                var mediaSource: MediaSource = viewModel.buildMediaSource(
+                    Uri.parse(music.file),
+                    this
+                )
+                viewModel.musicPlayerLiveData.observe(this, Observer { it ->
+                    it.let { player ->
+                        mini_player.player = player
+                        main_player_bottom.player = player
+                        player.setMediaSource(mediaSource)
+                        player.prepare()
+                    }
+                })
             }
+        })
+
+        // Current Music Position setting.
+        main_player_bottom.setProgressUpdateListener { position, _ ->
+            viewModel.musicLyricsLiveData.observe(this, Observer { lyrics ->
+                for (i in 0 until lyrics.size - 1) {
+                    if (position <= lyrics[i + 1].time) {
+                        viewModel.setCurrentLyricsPosition(i)
+                        break
+                    }
+                }
+            })
+        }
+
+        // Jump to Same Music - Other Position
+        viewModel.selectedLyricPosition.observe(this, Observer { time ->
+            viewModel.musicPlayerLiveData.observe(this, Observer { player ->
+                player.seekTo(time)
+            })
+        })
+
+        // Add Main player Lyrics
+        viewModel.musicLyricsLiveData.observe(this, Observer {
+            it.forEach { lyrics ->
+                lyricsAdapter.addLyricItem(lyrics.time, lyrics.lyric)
+            }
+            lyricsAdapter.notifyDataSetChanged()
+        })
+
+        // Scroll Main Player Lyrics
+        viewModel.currentLyricsPositionData.observe(this, Observer { position ->
+            main_player_lyrics_click.text = ""
+            lyricsAdapter.setCurrentPosition(position)
+            mainplayer_lyrics.scrollToPosition(position + 1)
+            lyricsAdapter.notifyDataSetChanged()
         })
     }
 
     override fun initAfterBinding() {
-        sliding_layout.addPanelSlideListener(object : SlidingUpPanelLayout.PanelSlideListener {
-            override fun onPanelSlide(panel: View?, slideOffset: Float) {
-                if (slideOffset != 0.0f) {
-                    main_tab.visibility = View.GONE
-                    main_player.visibility = View.VISIBLE
-                    mini_player.visibility = View.GONE
-                    main_player_title.isSelected = true
-                } else {
-                    main_tab.visibility = View.VISIBLE
-                    mini_player.visibility = View.VISIBLE
-                    main_player.visibility = View.GONE
-                    mini_player_title.isSelected = true
-                }
-                Log.i(TAG, "onPanelSlide, offset $slideOffset")
-            }
+        // Main Tab Click.
+        landingTabClickListener()
 
+        // Mini-Player Slide to Main-Player
+        sliding_layout.addPanelSlideListener(object : SlidingUpPanelLayout.PanelSlideListener {
+            override fun onPanelSlide(panel: View?, slideOffset: Float) {}
             override fun onPanelStateChanged(
                 panel: View?,
                 previousState: PanelState?,
                 newState: PanelState
             ) {
-                Log.i(TAG, "onPanelStateChanged $newState")
+                if (newState == PanelState.COLLAPSED) {
+                    main_tab.visibility = View.VISIBLE
+                    mini_player.visibility = View.VISIBLE
+                    main_player.visibility = View.GONE
+                    mini_player_title.isSelected = true
+                    viewModel.musicPlayerLiveData.observe(this@MainActivity, Observer { player ->
+                        mini_player.player = player
+                        main_player_bottom.player = null
+                    })
+                } else {
+                    main_tab.visibility = View.GONE
+                    main_tab.clearAnimation()
+                    main_player.visibility = View.VISIBLE
+                    mini_player.visibility = View.GONE
+                    main_player_title.isSelected = true
+                    viewModel.musicPlayerLiveData.observe(this@MainActivity, Observer { player ->
+                        mini_player.player = null
+                        main_player_bottom.player = player
+                    })
+                }
             }
         })
         viewModel.getMusicSearch()
-        if(player != null) {
-            player!!.addListener(object : Player.EventListener {
-                override fun onTimelineChanged(timeline: Timeline, manifest: Any?, reason: Int) {}
-                override fun onTracksChanged(trackGroups: TrackGroupArray, trackSelections: TrackSelectionArray) {}
-                override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-                    if (playbackState == Player.STATE_BUFFERING) {
-
-                    } else if (playbackState == Player.STATE_READY) {
-                    }
-                }
-                override fun onRepeatModeChanged(repeatMode: Int) {}
-                override fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {}
-                override fun onPlayerError(error: ExoPlaybackException) {}
-                override fun onPositionDiscontinuity(reason: Int) {}
-                override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters) {}
-                override fun onSeekProcessed() {}
-            })
+        main_player_lyrics_click.setOnClickListener {
+            val transaction = supportFragmentManager.beginTransaction().apply {
+                setCustomAnimations(R.anim.abc_slide_in_bottom, R.anim.abc_slide_out_top)
+                replace(lyric_screen.id, LyricFragment.newInstance())
+                addToBackStack(null)
+            }
+            transaction.commit()
         }
+    }
+
+    private fun landingTabClickListener() {
         mainTab_home_layout.setOnClickListener {
             viewModel.selectTab("HOME")
         }
@@ -171,13 +222,6 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>(), M
         mainTab_browser_text.setTextColor(resources.getColor(R.color.not_use_tab_color))
         mainTab_search_text.setTextColor(resources.getColor(R.color.not_use_tab_color))
         mainTab_my_text.setTextColor(resources.getColor(R.color.not_use_tab_color))
-    }
-
-    fun buildMediaSource(uri: Uri) : MediaSource{
-        var userAgent:String = Util.getUserAgent(this, "project_name")
-        return ExtractorMediaSource.Factory(DefaultHttpDataSourceFactory(userAgent)).createMediaSource(
-            uri
-        )
     }
 
 }

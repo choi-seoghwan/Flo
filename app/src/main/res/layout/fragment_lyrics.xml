@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/gm_player_bg">
+
+        <View
+            android:id="@+id/main_player_fit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/main_player_lyrics_close"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:layout_alignTop="@id/main_player_fit"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10.0dip"
+            android:layout_marginRight="18.0dip"
+            android:background="@color/gm_player_bg"
+            android:contentDescription="@string/close"
+            android:src="@drawable/icon_popup_close_wh" />
+
+        <TextView
+            android:id="@+id/main_player_lyrics_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/main_player_fit"
+            android:layout_marginLeft="@dimen/mainplayer_margin"
+            android:layout_marginTop="19.0dip"
+            android:layout_marginRight="@dimen/mainplayer_margin"
+            android:layout_toLeftOf="@id/main_player_lyrics_close"
+            android:background="@color/gm_player_bg"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/sans_medium"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/text_color_06"
+            android:textSize="19.0dip"
+            tools:ignore="EllipsizeMaxLines">
+
+            <requestFocus
+                android:duplicateParentState="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/main_player_lyrics_artist"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/main_player_lyrics_title"
+            android:layout_alignLeft="@id/main_player_lyrics_title"
+            android:layout_alignRight="@id/main_player_lyrics_title"
+            android:layout_marginTop="4.0dip"
+            android:background="@color/gm_player_bg"
+            android:ellipsize="end"
+            android:fontFamily="@font/sans_regular"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="16.0dip" />
+
+        <com.google.android.exoplayer2.ui.PlayerControlView
+            android:id="@+id/main_player_lyrics_controller"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/mainplayer_list_bottom_height"
+            android:layout_alignParentBottom="true"
+            app:show_timeout="0"
+            app:hide_on_touch="false"
+            app:controller_layout_id="@layout/layout_main_player_bottom"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lyrics_recyclerview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/main_player_lyrics_controller"
+            android:layout_below="@id/main_player_lyrics_artist"
+            android:layout_marginLeft="25.0dip"
+            android:layout_marginTop="37.0dip"
+            android:layout_marginRight="70.0dip"
+            android:layout_marginBottom="46.0dip"
+            android:overScrollMode="never"
+            android:scrollbars="vertical" />
+
+        <CheckBox
+            android:id="@+id/lyrics_seek"
+            android:layout_alignTop="@id/lyrics_recyclerview"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="14.0dip"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="6.0dip"
+            android:background="@null"
+            android:button="@drawable/main_playback_btn_seek"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/mainplayer_list_bottom_height"
+            android:gravity="center"
+            android:lineSpacingExtra="7.0dip"
+            android:textColor="@color/text_color_08"
+            android:textSize="15.0dip" />
+
+    </RelativeLayout>
+</layout>

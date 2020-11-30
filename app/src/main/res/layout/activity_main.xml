@@ -31,30 +31,30 @@
                 android:background="@color/gm_miniplayer_bg"
                 android:orientation="vertical">
 
-                <com.google.android.exoplayer2.ui.PlayerView
+                <com.google.android.exoplayer2.ui.PlayerControlView
                     android:id="@+id/mini_player"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     app:show_timeout="0"
                     app:hide_on_touch="false"
                     app:controller_layout_id="@layout/layout_mini_player"/>
-
-                <com.google.android.exoplayer2.ui.PlayerView
+                <!--
+                <com.google.android.exoplayer2.ui.PlayerControlView
                     android:id="@+id/main_player"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:visibility="gone"
                     app:show_timeout="0"
                     app:hide_on_touch="false"
                     app:controller_layout_id="@layout/layout_main_player_track"/>
-                <!--
+
                 <include layout="@layout/layout_mini_player"
                     android:id="@+id/mini_player"/>
                 -->
-                <!--
                 <include layout="@layout/layout_main_player_track"
                     android:id="@+id/main_player"/>
-                -->
+
+
             </LinearLayout>
 
         </com.sothree.slidinguppanel.SlidingUpPanelLayout>
@@ -64,5 +64,11 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/main_tab_height"
             android:layout_alignParentBottom="true" />
+
+        <FrameLayout
+            android:id="@+id/lyric_screen"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
    </RelativeLayout>
 </layout>

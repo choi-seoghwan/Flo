@@ -15,13 +15,24 @@
             android:layout_alignParentTop="true"
             android:importantForAccessibility="no" />
 
-        <include
+        <!--
+                <include
+                    android:id="@+id/main_player_bottom"
+                    layout="@layout/layout_main_player_bottom"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:importantForAccessibility="no" />
+        -->
+        <com.google.android.exoplayer2.ui.PlayerControlView
             android:id="@+id/main_player_bottom"
-            layout="@layout/layout_main_player_bottom"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:importantForAccessibility="no" />
+            android:importantForAccessibility="no"
+            app:controller_layout_id="@layout/layout_main_player_bottom"
+            app:hide_on_touch="false"
+            app:show_timeout="0" />
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -134,11 +145,21 @@
 
                 <FrameLayout
                     android:id="@+id/main_player_lyricsLayer"
+                    android:clickable="true"
                     android:layout_width="fill_parent"
                     android:layout_height="44.0dip"
-                    android:layout_marginTop="12.0dip">
+                    android:layout_marginTop="12.0dip"
+                    android:focusable="true">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mainplayer_lyrics"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:overScrollMode="never"
+                        android:scrollbars="vertical"/>
 
                     <TextView
+                        android:id="@+id/main_player_lyrics_click"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="center_horizontal"

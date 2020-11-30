@@ -46,9 +46,9 @@ dependencies {
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
     // EXO-player
-    implementation "com.google.android.exoplayer:exoplayer-core:2.11.1"
-    implementation "com.google.android.exoplayer:exoplayer-ui:2.11.1"
-    implementation "com.google.android.exoplayer:exoplayer-hls:2.11.1"
+    implementation "com.google.android.exoplayer:exoplayer-core:2.12.0"
+    implementation "com.google.android.exoplayer:exoplayer-ui:2.12.0"
+    implementation "com.google.android.exoplayer:exoplayer-hls:2.12.0"
 
     // androidx
     implementation 'androidx.appcompat:appcompat:1.2.0'

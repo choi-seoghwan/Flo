@@ -1,6 +1,7 @@
 package com.example.flo.di
 
-import com.example.flo.MainSearchRecyclerViewAdapter
+import com.example.flo.LyricsAdapter
+import com.example.flo.MainLyricsAdapter
 import com.example.flo.model.DataModel
 import com.example.flo.model.DataModelImpl
 import com.example.flo.model.service.MusicSearchService
@@ -24,7 +25,10 @@ var retrofitPart = module {
 
 var adapterPart = module {
     factory {
-        MainSearchRecyclerViewAdapter()
+        MainLyricsAdapter()
+    }
+    factory {
+        LyricsAdapter()
     }
 }
 
