@@ -1,7 +1,4 @@
 #사용한 라이브러리
-## kotlin
-### implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
 ## sliding-up
 ### implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
