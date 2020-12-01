@@ -11,6 +11,7 @@ import com.example.flo.base.BaseKotlinActivity
 import com.example.flo.databinding.ActivityMainBinding
 import com.example.flo.viewmodel.MainViewModel
 import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState
@@ -32,12 +33,14 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
     private val TAG = "MainActivity"
 
     private val lyricsAdapter: MainLyricsAdapter by inject()
+    private lateinit var player: SimpleExoPlayer
 
     override fun initStartView() {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(main_screen.id, MainFragment.newInstance()).commit()
-        viewModel.selectTab("HOME")
 
+        viewModel.selectTab("HOME")
+        viewModel.setPlayer(this.applicationContext)
         mainplayer_lyrics.run {
             adapter = lyricsAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -46,7 +49,7 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun initDataBinding() {
 
-        // Main Tab setting(home, browser, search, my)
+        // Main Tab Setting(home, browser, search, my)
         viewModel.selectedTab.observe(this, Observer {
             it.let { tab ->
                 when (tab) {
@@ -56,6 +59,12 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
                     "MY" -> landingMy()
                 }
             }
+        })
+
+        // Music Player.
+        viewModel.musicPlayerLiveData.observe(this, Observer { it ->
+            player = it
+            mini_player.player = player
         })
 
         // Music Data setting( title, artist, album-image, lyrics, player(main, mini) )
@@ -72,26 +81,21 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
 
                 //가사
                 viewModel.setLyricInfoList(music.lyrics)
+                if(music.lyrics.isNotEmpty()) main_player_lyrics_click.text = ""
 
                 //뮤직 플레이어
-                viewModel.setPlayer(this.applicationContext)
+                val mediaSource: MediaSource = viewModel.buildMediaSource(Uri.parse(music.file), this)
+                player.setMediaSource(mediaSource)
+                player.prepare()
 
-                var mediaSource: MediaSource = viewModel.buildMediaSource(Uri.parse(music.file),this)
-                viewModel.musicPlayerLiveData.observe(this, Observer { it ->
-                    it.let { player ->
-                        mini_player.player = player
-                        player.setMediaSource(mediaSource)
-                        player.prepare()
-                        // User Data가 나중에 오면 할것
-                        main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
-                        main_player_repeat.tag = R.string.player_repeat_n
-                        player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
-                    }
-                })
+                // User Data가 나중에 오면 할것
+                main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
+                main_player_repeat.tag = R.string.player_repeat_n
+                player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
             }
         })
 
-        // Current Music Position setting.
+        // Current Position.
         main_player_bottom.setProgressUpdateListener { position, _ ->
             viewModel.musicLyricsLiveData.observe(this, Observer { lyrics ->
                 for (i in 0 until lyrics.size - 1) {
@@ -103,24 +107,19 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
             })
         }
 
-        // Jump to Same Music - Other Position
+        // Jump to Position
         viewModel.selectedLyricPosition.observe(this, Observer { time ->
-            viewModel.musicPlayerLiveData.observe(this, Observer { player ->
-                player.seekTo(time)
-            })
+            player.seekTo(time)
         })
 
         // Add Main player Lyrics
         viewModel.musicLyricsLiveData.observe(this, Observer {
-            it.forEach { lyrics ->
-                lyricsAdapter.addLyricItem(lyrics.time, lyrics.lyric)
-            }
+            it.forEach { lyrics -> lyricsAdapter.addLyricItem(lyrics.time, lyrics.lyric) }
             lyricsAdapter.notifyDataSetChanged()
         })
 
         // Scroll Main Player Lyrics
         viewModel.currentLyricsPositionData.observe(this, Observer { position ->
-            main_player_lyrics_click.text = ""
             lyricsAdapter.setCurrentPosition(position)
             mainplayer_lyrics.scrollToPosition(position + 1)
             lyricsAdapter.notifyDataSetChanged()
@@ -128,8 +127,12 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun initAfterBinding() {
+
         // Main Tab Click.
         landingTabClickListener()
+
+        // Get Music
+        viewModel.getMusicSearch()
 
         // Mini-Player Slide to Main-Player
         sliding_layout.addPanelSlideListener(object : SlidingUpPanelLayout.PanelSlideListener {
@@ -144,23 +147,21 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
                     mini_player.visibility = View.VISIBLE
                     main_player.visibility = View.GONE
                     mini_player_title.isSelected = true
-                    viewModel.musicPlayerLiveData.observe(this@MainActivity, Observer { player ->
-                        mini_player.player = player
-                        main_player_bottom.player = null
-                    })
+
+                    mini_player.player = player
+                    main_player_bottom.player = null
+
                 } else {
                     main_tab.visibility = View.GONE
                     main_player.visibility = View.VISIBLE
                     mini_player.visibility = View.GONE
                     main_player_title.isSelected = true
-                    viewModel.musicPlayerLiveData.observe(this@MainActivity, Observer { player ->
-                        mini_player.player = null
-                        main_player_bottom.player = player
-                    })
+
+                    mini_player.player = null
+                    main_player_bottom.player = player
                 }
             }
         })
-        viewModel.getMusicSearch()
         main_player_lyrics_click.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction().apply {
                 setCustomAnimations(R.anim.abc_slide_in_bottom, R.anim.abc_slide_out_top)
@@ -169,8 +170,6 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
             }
             transaction.commit()
         }
-
-
         main_player_like.setOnClickListener {
             main_player_like.isSelected = !main_player_like.isSelected
         }
@@ -178,25 +177,23 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
             main_player_dislike.isSelected = !main_player_dislike.isSelected
         }
         main_player_repeat.setOnClickListener {
-            viewModel.musicPlayerLiveData.observe(this, Observer { player ->
-                when (main_player_repeat.tag) {
-                    R.string.player_repeat_n -> {
-                        main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
-                        main_player_repeat.tag = R.string.player_repeat_a
-                        player.repeatMode = ExoPlayer.REPEAT_MODE_ALL
-                    }
-                    R.string.player_repeat_1 -> {
-                        main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
-                        main_player_repeat.tag = R.string.player_repeat_n
-                        player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
-                    }
-                    R.string.player_repeat_a -> {
-                        main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_1)
-                        main_player_repeat.tag = R.string.player_repeat_1
-                        player.repeatMode = ExoPlayer.REPEAT_MODE_ONE
-                    }
+            when (main_player_repeat.tag) {
+                R.string.player_repeat_n -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
+                    main_player_repeat.tag = R.string.player_repeat_a
+                    player.repeatMode = ExoPlayer.REPEAT_MODE_ALL
                 }
-            })
+                R.string.player_repeat_1 -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
+                    main_player_repeat.tag = R.string.player_repeat_n
+                    player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
+                }
+                R.string.player_repeat_a -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_1)
+                    main_player_repeat.tag = R.string.player_repeat_1
+                    player.repeatMode = ExoPlayer.REPEAT_MODE_ONE
+                }
+            }
         }
     }
 
