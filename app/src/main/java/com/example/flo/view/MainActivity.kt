@@ -166,6 +166,17 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
             }
             transaction.commit()
         }
+
+
+
+        main_player_like.setOnClickListener {
+            main_player_like.isSelected = !main_player_like.isSelected
+        }
+        main_player_dislike.setOnClickListener {
+            main_player_dislike.isSelected = !main_player_dislike.isSelected
+        }
+
+
     }
 
     private fun landingTabClickListener() {

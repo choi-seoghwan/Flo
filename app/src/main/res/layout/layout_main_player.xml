@@ -190,7 +190,8 @@
                         android:layout_height="25.0dip"
                         android:layout_gravity="center"
                         android:layout_marginLeft="30.0dip"
-                        android:background="@drawable/selector_icon_player_dislike"
+                        android:background="@drawable/icon_not_interested"
+                        android:backgroundTint="@drawable/selector_icon_player_dislike"
                         android:contentDescription="@string/player_dislike"/>
                 </LinearLayout>
 
