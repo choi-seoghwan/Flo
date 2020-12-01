@@ -14,19 +14,13 @@ abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> 
     abstract val layoutResourceId: Int
     abstract val viewModel: R
 
-    /**
-     * 뷰나 액티비티의 속성 등을 초기화.
-     */
+    // reset
     abstract fun initStartView()
 
-    /**
-     * 데이터 바인딩 및 rxjava 설정.
-     */
+    // Rx, databiding
     abstract fun initDataBinding()
 
-    /**
-     * 클릭 리스너
-     */
+    // Listener
     abstract fun initAfterBinding()
 
     private var isSetBackButtonValid = false

@@ -1,9 +1,10 @@
-package com.example.flo
+package com.example.flo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_main_player_lyrics.view.*
+import com.example.flo.R
+import kotlinx.android.synthetic.main.item_lyrics_full.view.*
 
 class LyricsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -11,8 +12,8 @@ class LyricsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var currentPosition = 0
 
-    class lyricsViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_main_player_lyrics, parent, false)
+    class LyricsViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+        LayoutInflater.from(parent.context).inflate(R.layout.item_lyrics_full, parent, false)
     ) {
         fun onBind(item: LyricsItem, currentPosition: Boolean) {
             itemView.run {
@@ -26,16 +27,16 @@ class LyricsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val lyricsItemList = ArrayList<LyricsItem>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = lyricsViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LyricsViewHolder(parent)
 
     override fun getItemCount() = lyricsItemList.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position == currentPosition) (holder as? lyricsViewHolder)?.onBind(
+        if (position == currentPosition) (holder as? LyricsViewHolder)?.onBind(
             lyricsItemList[position],
             true
         )
-        else (holder as? lyricsViewHolder)?.onBind(lyricsItemList[position], false)
+        else (holder as? LyricsViewHolder)?.onBind(lyricsItemList[position], false)
 
         holder.itemView.setOnClickListener {
             itemClickListner.onClick(lyricsItemList[position].time)

@@ -2,16 +2,13 @@ package com.example.flo.view
 
 import android.net.Uri
 import android.view.View
-import android.view.animation.AnimationUtils
-import android.view.animation.TranslateAnimation
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flo.MainLyricsAdapter
+import com.example.flo.adapter.MainLyricsAdapter
 import com.example.flo.R
 import com.example.flo.base.BaseKotlinActivity
 import com.example.flo.databinding.ActivityMainBinding
-import com.example.flo.view.ui.MainTabListener
 import com.example.flo.viewmodel.MainViewModel
 import com.google.android.exoplayer2.source.MediaSource
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
@@ -19,15 +16,14 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_lyrics.*
+import kotlinx.android.synthetic.main.layout_main_player.*
 import kotlinx.android.synthetic.main.layout_main_player_bottom.*
-import kotlinx.android.synthetic.main.layout_main_player_track.*
 import kotlinx.android.synthetic.main.layout_main_tab.*
 import kotlinx.android.synthetic.main.layout_mini_player.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>(), MainTabListener {
+class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_main
     override val viewModel: MainViewModel by viewModel()
@@ -187,25 +183,25 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>(), M
         }
     }
 
-    override fun landingHome() {
+    fun landingHome() {
         clearAllTab()
         mainTab_home_image.isSelected = true
         mainTab_home_text.setTextColor(resources.getColor(R.color.use_tab_color))
     }
 
-    override fun landingBrowser() {
+    fun landingBrowser() {
         clearAllTab()
         mainTab_browser_image.isSelected = true
         mainTab_browser_text.setTextColor(resources.getColor(R.color.use_tab_color))
     }
 
-    override fun landingSearch() {
+    fun landingSearch() {
         clearAllTab()
         mainTab_search_image.isSelected = true
         mainTab_search_text.setTextColor(resources.getColor(R.color.use_tab_color))
     }
 
-    override fun landingMy() {
+    fun landingMy() {
         clearAllTab()
         mainTab_my_image.isSelected = true
         mainTab_my_text.setTextColor(resources.getColor(R.color.use_tab_color))

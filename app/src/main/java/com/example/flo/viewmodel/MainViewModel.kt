@@ -3,7 +3,6 @@ package com.example.flo.viewmodel
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.flo.base.BaseKotlinViewModel

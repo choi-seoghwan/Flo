@@ -51,7 +51,7 @@
                 <include layout="@layout/layout_mini_player"
                     android:id="@+id/mini_player"/>
                 -->
-                <include layout="@layout/layout_main_player_track"
+                <include layout="@layout/layout_main_player"
                     android:id="@+id/main_player"/>
 
 

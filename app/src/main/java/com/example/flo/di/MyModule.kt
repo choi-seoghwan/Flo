@@ -1,7 +1,7 @@
 package com.example.flo.di
 
-import com.example.flo.LyricsAdapter
-import com.example.flo.MainLyricsAdapter
+import com.example.flo.adapter.LyricsAdapter
+import com.example.flo.adapter.MainLyricsAdapter
 import com.example.flo.model.DataModel
 import com.example.flo.model.DataModelImpl
 import com.example.flo.model.service.MusicSearchService

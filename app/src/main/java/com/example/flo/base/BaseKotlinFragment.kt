@@ -15,21 +15,13 @@ abstract class BaseKotlinFragment<T : ViewDataBinding, R : BaseKotlinViewModel> 
     abstract val layoutResourceId: Int
     abstract val viewModel: R
 
-    /**
-     * 레이아웃을 띄운 직후 호출.
-     * 뷰나 액티비티의 속성 등을 초기화.
-     */
+    // reset
     abstract fun initStartView()
 
-    /**
-     * 데이터 바인딩 및 rxjava 설정.
-     */
+    // Rx, databiding
     abstract fun initDataBinding()
 
-    /**
-     * 바인딩 이후에 할 일을 여기에 구현.
-     * 클릭 리스너도 이곳에서 설정.
-     */
+    // Listener
     abstract fun initAfterBinding()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

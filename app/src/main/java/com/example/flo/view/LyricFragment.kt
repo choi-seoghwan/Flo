@@ -1,19 +1,13 @@
 package com.example.flo.view
 
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flo.LyricsAdapter
+import com.example.flo.adapter.LyricsAdapter
 import com.example.flo.R
 import com.example.flo.base.BaseKotlinFragment
 import com.example.flo.databinding.FragmentMainBinding
 import com.example.flo.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_lyrics.*
-import kotlinx.android.synthetic.main.layout_main_player_bottom.*
-import kotlinx.android.synthetic.main.layout_main_player_track.*
-import kotlinx.android.synthetic.main.layout_mini_player.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
