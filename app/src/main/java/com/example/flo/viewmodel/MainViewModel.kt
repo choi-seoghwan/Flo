@@ -9,7 +9,6 @@ import com.example.flo.base.BaseKotlinViewModel
 import com.example.flo.model.DataModel
 import com.example.flo.model.response.LyricsInfo
 import com.example.flo.model.response.MusicResponse
-import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
@@ -34,14 +33,16 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
     private val _musicPlayerLiveData = MutableLiveData<SimpleExoPlayer>()
     val musicPlayerLiveData: LiveData<SimpleExoPlayer>
         get() = _musicPlayerLiveData
+
     fun setPlayer(context: Context) {
-        _musicPlayerLiveData.postValue(ExoPlayerFactory.newSimpleInstance(context))
+        _musicPlayerLiveData.postValue(SimpleExoPlayer.Builder(context).build())
     }
 
     // music
     private val _musicResponseLiveData = MutableLiveData<MusicResponse>()
     val musicResponseLiveData: LiveData<MusicResponse>
         get() = _musicResponseLiveData
+
     fun getMusicSearch() {
         addDisposable(
             model.getData()
@@ -62,9 +63,11 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
     private val _musicLyricsLiveData = MutableLiveData<ArrayList<LyricsInfo>>()
     val musicLyricsLiveData: LiveData<ArrayList<LyricsInfo>>
         get() = _musicLyricsLiveData
+
     fun setLyricInfoList(lyricString: String) {
         _musicLyricsLiveData.postValue(getDividedSections(lyricString))
     }
+
     private fun getDividedSections(data: String): ArrayList<LyricsInfo> {
         val infoList = ArrayList<LyricsInfo>()
         val sections = data.split("\n")
@@ -77,6 +80,7 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
         }
         return infoList
     }
+
     private fun getMilliSecondsFromSection(section: String): Long {
         val time = section.substring(1, 9)
         val times = time.split(":")
@@ -92,6 +96,7 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
     private val _currentLyricsPositionData = MutableLiveData<Int>()
     val currentLyricsPositionData: LiveData<Int>
         get() = _currentLyricsPositionData
+
     fun setCurrentLyricsPosition(currentPosition: Int) {
         _currentLyricsPositionData.postValue(currentPosition)
     }
@@ -100,6 +105,7 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
     private val _selectedLyricPosition = MutableLiveData<Long>()
     val selectedLyricPosition: LiveData<Long>
         get() = _selectedLyricPosition
+
     fun setSelectLyricPosition(time: Long) {
         _selectedLyricPosition.postValue(time)
     }
