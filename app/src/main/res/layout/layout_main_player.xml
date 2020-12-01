@@ -189,7 +189,7 @@
                         android:layout_width="30.0dip"
                         android:layout_height="30.0dip"
                         android:layout_gravity="center"
-                        android:padding="5dip"
+                        android:padding="8dip"
                         android:layout_marginLeft="30.0dip"
                         android:background="@drawable/selector_icon_player_dislike"
                         android:contentDescription="@string/player_dislike"/>
