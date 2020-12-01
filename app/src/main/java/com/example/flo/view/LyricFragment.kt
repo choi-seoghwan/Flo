@@ -43,13 +43,13 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
 
             when (it.repeatMode) {
                 ExoPlayer.REPEAT_MODE_OFF -> {
-                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
                 }
                 ExoPlayer.REPEAT_MODE_ALL -> {
-                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_1)
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
                 }
                 ExoPlayer.REPEAT_MODE_ONE -> {
-                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_1)
                 }
             }
             main_player_shuffle.isSelected = player.shuffleModeEnabled
