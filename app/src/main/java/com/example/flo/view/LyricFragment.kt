@@ -50,6 +50,10 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
             lyrics_recyclerview.scrollToPosition(position + 4)
             lyricsAdapter.notifyDataSetChanged()
         })
+        // Jump to Same Music - Other Position
+        viewModel.selectedLyricPosition.observe(this, Observer {
+            lyricsAdapter.notifyDataSetChanged()
+        })
     }
 
     override fun initAfterBinding() {
@@ -60,7 +64,6 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
             override fun onClick(time: Long) {
                 if (lyrics_seek.isChecked) {
                     viewModel.setSelectLyricPosition(time)
-                    lyricsAdapter.notifyDataSetChanged()
                 }
             }
         })

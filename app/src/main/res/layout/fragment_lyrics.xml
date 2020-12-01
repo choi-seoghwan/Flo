@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/gm_player_bg">
+        android:background="@color/player_bg">
 
         <View
             android:id="@+id/main_player_fit"
@@ -21,8 +21,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10.0dip"
             android:layout_marginRight="18.0dip"
-            android:background="@color/gm_player_bg"
-            android:contentDescription="@string/close"
+            android:background="@color/player_bg"
+            android:contentDescription="@string/lyrics_close"
             android:src="@drawable/icon_popup_close_wh" />
 
         <TextView
@@ -30,11 +30,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/main_player_fit"
-            android:layout_marginLeft="@dimen/mainplayer_margin"
+            android:layout_marginLeft="@dimen/main_player_margin"
             android:layout_marginTop="19.0dip"
-            android:layout_marginRight="@dimen/mainplayer_margin"
+            android:layout_marginRight="@dimen/main_player_margin"
             android:layout_toLeftOf="@id/main_player_lyrics_close"
-            android:background="@color/gm_player_bg"
+            android:background="@color/player_bg"
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -61,7 +61,7 @@
             android:layout_alignLeft="@id/main_player_lyrics_title"
             android:layout_alignRight="@id/main_player_lyrics_title"
             android:layout_marginTop="4.0dip"
-            android:background="@color/gm_player_bg"
+            android:background="@color/player_bg"
             android:ellipsize="end"
             android:fontFamily="@font/sans_regular"
             android:maxLines="1"
@@ -72,8 +72,9 @@
         <com.google.android.exoplayer2.ui.PlayerControlView
             android:id="@+id/main_player_lyrics_controller"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/mainplayer_list_bottom_height"
+            android:layout_height="@dimen/main_player_list_bottom_height"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dip"
             app:show_timeout="0"
             app:hide_on_touch="false"
             app:controller_layout_id="@layout/layout_main_player_bottom"/>
@@ -105,7 +106,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="@dimen/mainplayer_list_bottom_height"
+            android:layout_marginBottom="@dimen/main_player_list_bottom_height"
             android:gravity="center"
             android:lineSpacingExtra="7.0dip"
             android:textColor="@color/text_color_08"

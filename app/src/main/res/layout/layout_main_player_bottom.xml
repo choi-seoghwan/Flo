@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/mainplayer_track_bottom_height"
+        android:layout_height="@dimen/main_player_bottom_height"
         android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/main_player_progress_bar"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/mainplayer_bottom_seekbar_height"
-            android:paddingLeft="@dimen/mainplayer_margin"
-            android:paddingRight="@dimen/mainplayer_margin">
+            android:layout_height="@dimen/main_player_bottom_seek_bar_height"
+            android:paddingLeft="@dimen/main_player_margin"
+            android:paddingRight="@dimen/main_player_margin">
 
             <TextView
                 android:id="@+id/text_current_time"
@@ -47,24 +47,24 @@
                     android:id="@id/exo_progress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:played_color="@color/gm_mini_player_progress"
-                    app:unplayed_color="@color/gm_ffffff_07"/>
+                    app:played_color="@color/player_seek_bar_play"
+                    app:unplayed_color="@color/player_seek_bar_unplay"/>
             </RelativeLayout>
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/main_player_controller"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/mainplayer_bottom_control_height"
+            android:layout_height="@dimen/main_player_bottom_control_height"
             android:orientation="horizontal"
             android:paddingLeft="10.0dip"
             android:paddingRight="10.0dip">
 
             <ImageView
                 android:id="@+id/main_player_repeat"
-                android:layout_width="@dimen/mainplayer_control_button"
-                android:layout_height="@dimen/mainplayer_control_button"
-                android:contentDescription="@string/talkback_repeat"
+                android:layout_width="@dimen/main_player_control_button"
+                android:layout_height="@dimen/main_player_control_button"
+                android:contentDescription="@string/player_repeat"
                 android:src="@drawable/btn_mainplayer_repeat_n"/>
 
             <View
@@ -74,9 +74,9 @@
 
             <ImageView
                 android:id="@+id/main_player_previous"
-                android:layout_width="@dimen/mainplayer_control_button"
-                android:layout_height="@dimen/mainplayer_control_button"
-                android:contentDescription="@string/talkback_prev"
+                android:layout_width="@dimen/main_player_control_button"
+                android:layout_height="@dimen/main_player_control_button"
+                android:contentDescription="@string/player_prev"
                 android:src="@drawable/btn_mainplayer_previous"/>
 
             <View
@@ -86,15 +86,15 @@
 
             <ImageView
                 android:id="@+id/exo_play"
-                android:layout_width="@dimen/mainplayer_control_button"
-                android:layout_height="@dimen/mainplayer_control_button"
+                android:layout_width="@dimen/main_player_control_button"
+                android:layout_height="@dimen/main_player_control_button"
                 android:src="@drawable/btn_mainplayer_black_play"/>
 
             <ImageView
                 android:id="@+id/exo_pause"
                 android:visibility="gone"
-                android:layout_width="@dimen/mainplayer_control_button"
-                android:layout_height="@dimen/mainplayer_control_button"
+                android:layout_width="@dimen/main_player_control_button"
+                android:layout_height="@dimen/main_player_control_button"
                 android:src="@drawable/btn_mainplayer_black_pause"/>
 
             <View
@@ -104,9 +104,9 @@
 
             <ImageView
                 android:id="@+id/main_player_next"
-                android:layout_width="@dimen/mainplayer_control_button"
-                android:layout_height="@dimen/mainplayer_control_button"
-                android:contentDescription="@string/talkback_next"
+                android:layout_width="@dimen/main_player_control_button"
+                android:layout_height="@dimen/main_player_control_button"
+                android:contentDescription="@string/player_next"
                 android:src="@drawable/btn_mainplayer_next"/>
 
             <View
@@ -116,24 +116,24 @@
 
             <ImageView
                 android:id="@+id/main_player_shuffle"
-                android:layout_width="@dimen/mainplayer_control_button"
-                android:layout_height="@dimen/mainplayer_control_button"
-                android:contentDescription="@string/talkback_shuffle"
+                android:layout_width="@dimen/main_player_control_button"
+                android:layout_height="@dimen/main_player_control_button"
+                android:contentDescription="@string/player_shuffle"
                 android:src="@drawable/main_player_shuffle"/>
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/main_player_tool"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/mainplayer_tool_height">
+            android:layout_height="@dimen/main_player_tool_height">
 
             <ImageView
                 android:id="@+id/main_player_insta"
                 android:layout_width="30.0dip"
                 android:layout_height="30.0dip"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="@dimen/mainplayer_margin"
-                android:contentDescription="@string/story_share_popup_title"
+                android:layout_marginLeft="@dimen/main_player_margin"
+                android:contentDescription="@string/player_share_sns"
                 android:src="@drawable/icon_action_sns_instagram_black" />
 
             <TextView
@@ -153,8 +153,8 @@
                 android:layout_width="30.0dip"
                 android:layout_height="30.0dip"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="@dimen/mainplayer_margin"
-                android:contentDescription="@string/talkback_playlist_view"
+                android:layout_marginRight="@dimen/main_player_margin"
+                android:contentDescription="@string/player_list"
                 android:src="@drawable/btn_to_play_list" />
         </RelativeLayout>
 

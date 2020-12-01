@@ -85,7 +85,6 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>(), M
                 viewModel.musicPlayerLiveData.observe(this, Observer { it ->
                     it.let { player ->
                         mini_player.player = player
-                        main_player_bottom.player = player
                         player.setMediaSource(mediaSource)
                         player.prepare()
                     }
@@ -152,7 +151,6 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>(), M
                     })
                 } else {
                     main_tab.visibility = View.GONE
-                    main_tab.clearAnimation()
                     main_player.visibility = View.VISIBLE
                     mini_player.visibility = View.GONE
                     main_player_title.isSelected = true

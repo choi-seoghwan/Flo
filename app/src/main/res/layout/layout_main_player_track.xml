@@ -5,13 +5,13 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/gm_player_bg">
+        android:background="@color/player_bg">
 
         <include
             android:id="@+id/main_player_top"
             layout="@layout/layout_main_player_top"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/mainplayer_top_height"
+            android:layout_height="@dimen/main_player_top_height"
             android:layout_alignParentTop="true"
             android:importantForAccessibility="no" />
 
@@ -40,8 +40,8 @@
             android:layout_above="@id/main_player_bottom"
             android:layout_below="@id/main_player_top"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/mainplayer_margin"
-            android:layout_marginRight="@dimen/mainplayer_margin">
+            android:layout_marginLeft="@dimen/main_player_margin"
+            android:layout_marginRight="@dimen/main_player_margin">
 
             <ImageView
                 android:id="@+id/main_player_more"
@@ -49,7 +49,7 @@
                 android:layout_height="40.0dip"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="right"
-                android:contentDescription="@string/talkback_more"
+                android:contentDescription="@string/player_more"
                 android:src="@drawable/selector_icon_more_player"/>
 
             <LinearLayout
@@ -114,6 +114,7 @@
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:textColor="@color/text_color_06"
+                                android:fontFamily="@font/sans_medium"
                                 android:textSize="16.0dip" />
 
                             <ImageView
@@ -163,7 +164,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="center_horizontal"
-                        android:text="@string/move_lyric"
+                        android:text="@string/player_lyric"
                         android:textColor="@color/text_color_08"
                         android:textSize="15.0dip" />
                 </FrameLayout>
@@ -181,7 +182,7 @@
                         android:layout_height="40.0dip"
                         android:layout_gravity="center"
                         android:background="@drawable/selector_player_like"
-                        android:contentDescription="@string/talkback_like"/>
+                        android:contentDescription="@string/player_like"/>
 
                     <Button
                         android:id="@+id/main_player_dislike"
@@ -190,7 +191,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="30.0dip"
                         android:background="@drawable/selector_player_dislike"
-                        android:contentDescription="@string/talkback_dislike"/>
+                        android:contentDescription="@string/player_dislike"/>
                 </LinearLayout>
 
                 <View

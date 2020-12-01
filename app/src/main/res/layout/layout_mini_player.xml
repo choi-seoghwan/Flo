@@ -12,7 +12,7 @@
             android:id="@+id/mini_player_layout"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/gm_miniplayer_bg"
+            android:background="@color/mini_player_bg"
             android:orientation="vertical">
 
             <FrameLayout
@@ -23,19 +23,19 @@
                     android:id="@+id/exo_progress"
                     android:layout_width="wrap_content"
                     android:layout_height="2.0dip"
-                    app:played_color="@color/gm_mini_player_progress"
-                    app:unplayed_color="@color/gm_ffffff_07" />
+                    app:played_color="@color/player_seek_bar_play"
+                    app:unplayed_color="@color/player_seek_bar_unplay" />
 
             </FrameLayout>
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/miniplayer_button_height">
+                android:layout_height="@dimen/mini_player_button_height">
 
                 <LinearLayout
                     android:id="@+id/mini_player_controller"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/miniplayer_button_height"
+                    android:layout_height="@dimen/mini_player_button_height"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
@@ -46,7 +46,7 @@
                         android:layout_width="33.0dip"
                         android:layout_height="45.0dip"
                         android:background="@android:color/transparent"
-                        android:contentDescription="@string/talkback_prev"
+                        android:contentDescription="@string/player_prev"
                         android:src="@drawable/mini_player_previous" />
 
                     <ImageButton
@@ -73,7 +73,7 @@
                         android:layout_width="33.0dip"
                         android:layout_height="45.0dip"
                         android:background="@android:color/transparent"
-                        android:contentDescription="@string/talkback_next"
+                        android:contentDescription="@string/player_next"
                         android:src="@drawable/mini_player_next" />
 
                     <ImageButton
@@ -81,7 +81,7 @@
                         android:layout_width="59.0dip"
                         android:layout_height="fill_parent"
                         android:background="@android:color/transparent"
-                        android:contentDescription="@string/talkback_playlist_view"
+                        android:contentDescription="@string/player_list"
                         android:paddingLeft="16.0dip"
                         android:paddingTop="9.0dip"
                         android:paddingRight="16.0dip"
@@ -140,7 +140,7 @@
                                 android:fontFamily="@font/sans_medium"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:textColor="@color/text_color_03"
+                                android:textColor="@color/mini_player_singer"
                                 android:textSize="11.0dip" />
                         </LinearLayout>
                     </RelativeLayout>

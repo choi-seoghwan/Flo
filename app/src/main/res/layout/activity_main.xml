@@ -28,7 +28,7 @@
                 android:id="@+id/sliding_player"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/gm_miniplayer_bg"
+                android:background="@color/mini_player_bg"
                 android:orientation="vertical">
 
                 <com.google.android.exoplayer2.ui.PlayerControlView

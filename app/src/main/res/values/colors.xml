@@ -8,26 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-
     <color name="not_use_tab_color">#ff888888</color>
     <color name="use_tab_color">#ffffffff</color>
 
-
-    <color name="gm_miniplayer_bg">#f7161616</color>
-    <color name="gm_ffffff_07">#11ffffff</color>
-    <color name="gm_mini_player_progress">#ff3f3fff</color>
-    <color name="text_color_03">#ff989898</color>
+    <color name="mini_player_bg">#f7161616</color>
+    <color name="player_seek_bar_unplay">#11ffffff</color>
+    <color name="player_seek_bar_play">#ff3f3fff</color>
+    <color name="mini_player_singer">#ff989898</color>
     <color name="text_color_06">#ffffffff</color>
     <color name="text_color_08">#ff666666</color>
-
-
-    <color name="gm_player_bg">#ff0f0e0e</color>
-
+    <color name="player_bg">#ff0f0e0e</color>
     <color name="transparent">#00000000</color>
-    <color name="gm_3f3fff">#ff3f3fff</color>
-    <color name="gm_ffffff">#ffffffff</color>
-
-    <color name="gm_progressbar">#ff3f3fff</color>
-    <color name="text_color_06_16">#28ffffff</color>
+    <color name="player_dislike">#ff3f3fff</color>
+    <color name="player_button_bg">#28ffffff</color>
 
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector
 xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:state_enabled="false" android:drawable="@drawable/ic_baseline_not_interested_24" android:color = "@color/gm_ffffff" />
-<item android:state_selected="true" android:drawable="@drawable/ic_baseline_not_interested_24" android:color="@color/gm_3f3fff"/>
+<item android:state_enabled="false" android:drawable="@drawable/ic_baseline_not_interested_24" android:color = "@color/text_color_06" />
+<item android:state_selected="true" android:drawable="@drawable/ic_baseline_not_interested_24" android:color="@color/player_dislike"/>
 <item android:drawable="@drawable/ic_baseline_not_interested_24" />
 </selector>

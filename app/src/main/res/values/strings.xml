@@ -1,40 +1,36 @@
 <resources>
     <string name="app_name">FLO</string>
 
+    <!-- MAIN TAB -->
     <string name="home">홈</string>
     <string name="browse">둘러보기</string>
     <string name="search">검색</string>
     <string name="my">보관함</string>
 
+    <!-- PLAYER BOTTOM -->
+    <string name="player_repeat">재생목록 반복</string>
+    <string name="player_prev">이전곡</string>
+    <string name="player_next">다음곡</string>
+    <string name="player_shuffle">재생목록 셔플</string>
+    <string name="player_list">재생목록 열기</string>
 
-    <string name="talkback_repeat">재생목록 반복</string>
-    <string name="talkback_prev">이전곡</string>
-    <string name="talkback_next">다음곡</string>
-    <string name="talkback_shuffle">재생목록 셔플</string>
+    <!-- PLAYER TOP -->
+    <string name="player_setting">재생환경 설정 열기</string>
+    <string name="player_equalize">이퀄라이저 열기</string>
+    <string name="player_fold">플레이어 접기</string>
+    <string name="player_more">더보기</string>
 
-    <string name="talkback_playlist_view">재생목록 열기</string>
+    <!-- PLAYER MIDDLE -->
+    <string name="player_lyric">전체 가사 보기</string>
+    <string name="player_like">좋아요</string>
+    <string name="player_dislike">이 곡 안듣기</string>
 
-
-    <!-- main player Top -->
-    <string name="talkback_player_setting_open">재생환경 설정 열기</string>
-    <string name="talkback_equalize_open">이퀄라이저 열기</string>
-    <string name="playlist_title">재생목록</string>
-    <string name="talkback_player_close">플레이어 닫기</string>
-
-    <string name="talkback_more">더보기</string>
-    <string name="move_lyric">전체 가사 보기</string>
-    <string name="story_share_popup_title">스토리 공유하기</string>
-
-    <string name="talkback_like">좋아요</string>
-    <string name="talkback_dislike">이 곡 안듣기</string>
-
-
-
-    <!-- main player Bottom -->
+    <!-- PLAYER BOTTOM -->
+    <string name="player_share_sns">스토리 공유하기</string>
     <string name="similar_track">유사곡</string>
 
-
-    <string name="close">닫기</string>
+    <!-- LYRICS TOP -->
+    <string name="lyrics_close">닫기</string>
 
 
 </resources>
