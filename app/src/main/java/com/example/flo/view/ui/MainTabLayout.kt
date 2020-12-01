@@ -27,6 +27,7 @@ class MainTabLayout : LinearLayout {
     fun binding() {
         val viewDataBinding: ViewDataBinding =
             DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.layout_main_tab, this as ViewGroup, true)
+
         mainTab_my_image.setImageResource(R.drawable.main_tab_my)
     }
 }
