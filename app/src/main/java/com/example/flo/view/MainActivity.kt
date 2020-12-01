@@ -82,6 +82,7 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
                     main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
                 }
             }
+            main_player_shuffle.isSelected = player.shuffleModeEnabled
         })
 
         // Music Data setting( title, artist, album-image, lyrics, player(main, mini) )
@@ -199,6 +200,10 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
                     player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
                 }
             }
+            viewModel.setPlayer(player)
+        }
+        main_player_shuffle.setOnClickListener {
+            player.shuffleModeEnabled = !player.shuffleModeEnabled
             viewModel.setPlayer(player)
         }
     }

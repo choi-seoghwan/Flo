@@ -40,7 +40,7 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
         viewModel.musicPlayerLiveData.observe(this, Observer { it ->
             player = it
             main_player_lyrics_controller.player = player
-            Log.d(TAG, "sliding panel state : $it.repeatMode")
+
             when (it.repeatMode) {
                 ExoPlayer.REPEAT_MODE_OFF -> {
                     main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
@@ -52,6 +52,7 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
                     main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
                 }
             }
+            main_player_shuffle.isSelected = player.shuffleModeEnabled
         })
         viewModel.musicResponseLiveData.observe(this, Observer { music ->
             main_player_lyrics_title.text = music.title
@@ -97,6 +98,10 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
                     player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
                 }
             }
+            viewModel.setPlayer(player)
+        }
+        main_player_shuffle.setOnClickListener {
+            player.shuffleModeEnabled = !player.shuffleModeEnabled
             viewModel.setPlayer(player)
         }
     }
