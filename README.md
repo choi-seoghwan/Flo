@@ -4,9 +4,9 @@
 2. 음악재생화면 ( 음악정보, 가사(하이라이팅), SeekBar, play/stop )
 3. 전체가사보기 (특정 가사 이동 토글 버튼, 닫기버튼, SeekBar, play/stop )
 
-<p align="center">
-<![flo (2)](https://user-images.githubusercontent.com/74610959/100705466-929c1b00-33ea-11eb-94b1-9bbc3f8aecab.gif)>
-</p>
+<span style="display:block;text-align:center">
+![flo (2)](https://user-images.githubusercontent.com/74610959/100705466-929c1b00-33ea-11eb-94b1-9bbc3f8aecab.gif)
+</span>
 
 # 사용한 라이브러리
 ## sliding-up
