@@ -13,7 +13,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="18.0dip"
             android:contentDescription="@string/player_setting"
-            android:src="@drawable/btn_playlist_setting"
+            android:src="@drawable/btn_main_player_setting"
             android:visibility="visible" />
 
         <ImageView
@@ -37,7 +37,7 @@
             android:layout_marginRight="@dimen/main_player_top_right_margin"
             android:contentDescription="@string/player_fold"
             android:scaleType="center"
-            android:src="@drawable/icon_list_arrow_player" />
+            android:src="@drawable/icon_main_player_fold" />
 
     </RelativeLayout>
 </layout>

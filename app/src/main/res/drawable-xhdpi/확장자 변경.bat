@@ -1,0 +1,1 @@
+ren *.9.jpg *.png

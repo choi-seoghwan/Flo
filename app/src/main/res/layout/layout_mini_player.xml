@@ -56,7 +56,7 @@
                         android:layout_marginLeft="4.0dip"
                         android:layout_marginRight="4.0dip"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/btn_miniplayer_play" />
+                        android:src="@drawable/btn_mini_player_play" />
 
                     <ImageButton
                         android:id="@+id/exo_pause"
@@ -66,7 +66,7 @@
                         android:layout_marginLeft="4.0dip"
                         android:layout_marginRight="4.0dip"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/btn_miniplayer_pause" />
+                        android:src="@drawable/btn_mini_player_pause" />
 
                     <ImageButton
                         android:id="@+id/mini_player_next"

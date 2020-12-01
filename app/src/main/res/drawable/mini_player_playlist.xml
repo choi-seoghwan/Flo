@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_enabled="false" android:drawable="@drawable/btn_miniplayer_list_dim" />
-    <item android:drawable="@drawable/btn_miniplayer_list" />
+    <item android:state_enabled="false" android:drawable="@drawable/btn_mini_player_list_dim" />
+    <item android:drawable="@drawable/btn_play_list" />
 </selector>

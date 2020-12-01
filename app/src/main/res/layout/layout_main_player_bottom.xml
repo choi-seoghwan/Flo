@@ -65,7 +65,7 @@
                 android:layout_width="@dimen/main_player_control_button"
                 android:layout_height="@dimen/main_player_control_button"
                 android:contentDescription="@string/player_repeat"
-                android:src="@drawable/btn_mainplayer_repeat_n"/>
+                android:src="@drawable/btn_main_player_repeat_n"/>
 
             <View
                 android:layout_width="0.0dip"
@@ -77,7 +77,7 @@
                 android:layout_width="@dimen/main_player_control_button"
                 android:layout_height="@dimen/main_player_control_button"
                 android:contentDescription="@string/player_prev"
-                android:src="@drawable/btn_mainplayer_previous"/>
+                android:src="@drawable/btn_main_player_previous"/>
 
             <View
                 android:layout_width="0.0dip"
@@ -88,14 +88,14 @@
                 android:id="@+id/exo_play"
                 android:layout_width="@dimen/main_player_control_button"
                 android:layout_height="@dimen/main_player_control_button"
-                android:src="@drawable/btn_mainplayer_black_play"/>
+                android:src="@drawable/btn_main_player_play"/>
 
             <ImageView
                 android:id="@+id/exo_pause"
                 android:visibility="gone"
                 android:layout_width="@dimen/main_player_control_button"
                 android:layout_height="@dimen/main_player_control_button"
-                android:src="@drawable/btn_mainplayer_black_pause"/>
+                android:src="@drawable/btn_main_player_pause"/>
 
             <View
                 android:layout_width="0.0dip"
@@ -107,7 +107,7 @@
                 android:layout_width="@dimen/main_player_control_button"
                 android:layout_height="@dimen/main_player_control_button"
                 android:contentDescription="@string/player_next"
-                android:src="@drawable/btn_mainplayer_next"/>
+                android:src="@drawable/btn_main_player_next"/>
 
             <View
                 android:layout_width="0.0dip"
@@ -134,14 +134,14 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="@dimen/main_player_margin"
                 android:contentDescription="@string/player_share_sns"
-                android:src="@drawable/icon_action_sns_instagram_black" />
+                android:src="@drawable/icon_sns_instagram" />
 
             <TextView
                 android:id="@+id/main_player_similar"
                 android:layout_width="56.0dip"
                 android:layout_height="30.0dip"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/shape_mainplayer_button"
+                android:background="@drawable/shape_main_player_button"
                 android:fontFamily="@font/sans_medium"
                 android:gravity="center"
                 android:text="@string/similar_track"
@@ -155,7 +155,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="@dimen/main_player_margin"
                 android:contentDescription="@string/player_list"
-                android:src="@drawable/btn_to_play_list" />
+                android:src="@drawable/btn_play_list" />
         </RelativeLayout>
 
     </LinearLayout>

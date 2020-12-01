@@ -23,7 +23,7 @@
             android:layout_marginRight="18.0dip"
             android:background="@color/player_bg"
             android:contentDescription="@string/lyrics_close"
-            android:src="@drawable/icon_popup_close_wh" />
+            android:src="@drawable/icon_popup_close" />
 
         <TextView
             android:id="@+id/main_player_lyrics_title"
@@ -101,7 +101,7 @@
             android:layout_height="40.0dip"
             android:layout_marginTop="6.0dip"
             android:background="@null"
-            android:button="@drawable/main_playback_btn_seek"/>
+            android:button="@drawable/lyric_toggle"/>
 
         <TextView
             android:layout_width="fill_parent"

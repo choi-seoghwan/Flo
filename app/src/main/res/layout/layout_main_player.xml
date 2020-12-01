@@ -120,7 +120,7 @@
                             <ImageView
                                 android:layout_width="14.0dip"
                                 android:layout_height="14.0dip"
-                                android:src="@drawable/icon_sub_arrow_black" />
+                                android:src="@drawable/icon_sub_arrow" />
                         </TableRow>
                     </TableLayout>
 
@@ -178,19 +178,20 @@
 
                     <Button
                         android:id="@+id/main_player_like"
-                        android:layout_width="40.0dip"
-                        android:layout_height="40.0dip"
+                        android:layout_width="30.0dip"
+                        android:layout_height="30.0dip"
                         android:layout_gravity="center"
-                        android:background="@drawable/selector_player_like"
+                        android:background="@drawable/selector_icon_player_like"
                         android:contentDescription="@string/player_like"/>
 
                     <Button
                         android:id="@+id/main_player_dislike"
-                        android:layout_width="40.0dip"
-                        android:layout_height="40.0dip"
+                        android:layout_width="30.0dip"
+                        android:layout_height="30.0dip"
                         android:layout_gravity="center"
+                        android:padding="5dip"
                         android:layout_marginLeft="30.0dip"
-                        android:background="@drawable/selector_player_dislike"
+                        android:background="@drawable/selector_icon_player_dislike"
                         android:contentDescription="@string/player_dislike"/>
                 </LinearLayout>
 
@@ -205,7 +206,7 @@
         <ImageView
             android:id="@+id/iv_seekbar_gradient"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/seekbar_moving_text_background"
+            android:layout_height="@dimen/seek_bar_moving_text_background"
             android:layout_above="@id/main_player_bottom"
             android:visibility="gone" />
 
@@ -213,7 +214,7 @@
             android:id="@+id/tv_moving_time"
             style="@style/SeekbarMovingTime"
             android:layout_above="@id/main_player_bottom"
-            android:layout_marginBottom="@dimen/seekbar_moving_text_bottom"
+            android:layout_marginBottom="@dimen/seek_bar_moving_text_bottom"
             android:visibility="gone" />
 
     </RelativeLayout>

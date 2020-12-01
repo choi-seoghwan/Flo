@@ -5,8 +5,8 @@
         <item name="android:textColor">@color/text_color_06</item>
         <item name="android:ellipsize">none</item>
         <item name="android:background">@color/transparent</item>
-        <item name="android:paddingLeft">@dimen/seekbar_moving_text_padding</item>
-        <item name="android:paddingRight">@dimen/seekbar_moving_text_padding</item>
+        <item name="android:paddingLeft">@dimen/seek_bar_moving_text_padding</item>
+        <item name="android:paddingRight">@dimen/seek_bar_moving_text_padding</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">1</item>
@@ -17,9 +17,9 @@
         <item name="android:background">@null</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:maxHeight">@dimen/seekbar_height_basic</item>
-        <item name="android:minHeight">@dimen/seekbar_height_basic</item>
-        <item name="android:thumb">@drawable/seekbar_thumb_selector</item>
+        <item name="android:maxHeight">@dimen/seek_bar_height_basic</item>
+        <item name="android:minHeight">@dimen/seek_bar_height_basic</item>
+        <item name="android:thumb">@drawable/seek_bar_thumb_selector</item>
         <item name="android:splitTrack">false</item>
     </style>
 </resources>
