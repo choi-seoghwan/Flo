@@ -32,5 +32,9 @@
     <!-- LYRICS TOP -->
     <string name="lyrics_close">닫기</string>
 
+    <string name="player_repeat_n">반복없음</string>
+    <string name="player_repeat_1">하나반복</string>
+    <string name="player_repeat_a">모두반복</string>
+
 
 </resources>

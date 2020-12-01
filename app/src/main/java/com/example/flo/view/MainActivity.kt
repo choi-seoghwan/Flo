@@ -10,6 +10,7 @@ import com.example.flo.R
 import com.example.flo.base.BaseKotlinActivity
 import com.example.flo.databinding.ActivityMainBinding
 import com.example.flo.viewmodel.MainViewModel
+import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState
@@ -37,7 +38,6 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
         fragmentTransaction.add(main_screen.id, MainFragment.newInstance()).commit()
         viewModel.selectTab("HOME")
 
-        viewModel.setPlayer(this.applicationContext)
         mainplayer_lyrics.run {
             adapter = lyricsAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -74,15 +74,18 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
                 viewModel.setLyricInfoList(music.lyrics)
 
                 //뮤직 플레이어
-                var mediaSource: MediaSource = viewModel.buildMediaSource(
-                    Uri.parse(music.file),
-                    this
-                )
+                viewModel.setPlayer(this.applicationContext)
+
+                var mediaSource: MediaSource = viewModel.buildMediaSource(Uri.parse(music.file),this)
                 viewModel.musicPlayerLiveData.observe(this, Observer { it ->
                     it.let { player ->
                         mini_player.player = player
                         player.setMediaSource(mediaSource)
                         player.prepare()
+                        // User Data가 나중에 오면 할것
+                        main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
+                        main_player_repeat.tag = R.string.player_repeat_n
+                        player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
                     }
                 })
             }
@@ -168,15 +171,33 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
         }
 
 
-
         main_player_like.setOnClickListener {
             main_player_like.isSelected = !main_player_like.isSelected
         }
         main_player_dislike.setOnClickListener {
             main_player_dislike.isSelected = !main_player_dislike.isSelected
         }
-
-
+        main_player_repeat.setOnClickListener {
+            viewModel.musicPlayerLiveData.observe(this, Observer { player ->
+                when (main_player_repeat.tag) {
+                    R.string.player_repeat_n -> {
+                        main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
+                        main_player_repeat.tag = R.string.player_repeat_a
+                        player.repeatMode = ExoPlayer.REPEAT_MODE_ALL
+                    }
+                    R.string.player_repeat_1 -> {
+                        main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
+                        main_player_repeat.tag = R.string.player_repeat_n
+                        player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
+                    }
+                    R.string.player_repeat_a -> {
+                        main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_1)
+                        main_player_repeat.tag = R.string.player_repeat_1
+                        player.repeatMode = ExoPlayer.REPEAT_MODE_ONE
+                    }
+                }
+            })
+        }
     }
 
     private fun landingTabClickListener() {
