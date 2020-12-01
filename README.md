@@ -1,7 +1,8 @@
+# 기능 동작
 ![flo (2)](https://user-images.githubusercontent.com/74610959/100705466-929c1b00-33ea-11eb-94b1-9bbc3f8aecab.gif)
 
 
-#사용한 라이브러리
+# 사용한 라이브러리
 ## sliding-up
 ### implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
