@@ -31,7 +31,8 @@
                 android:layout_marginBottom="4.0dip"
                 android:text="@string/home"
                 android:textColor="@color/not_use_tab_color"
-                android:textSize="11.0dip" />
+                android:textSize="11.0dip"
+                android:fontFamily="@font/sans_medium"/>
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +58,8 @@
                 android:layout_marginBottom="4.0dip"
                 android:text="@string/browse"
                 android:textColor="@color/not_use_tab_color"
-                android:textSize="11.0dip" />
+                android:textSize="11.0dip"
+                android:fontFamily="@font/sans_medium"/>
         </LinearLayout>
 
         <LinearLayout
@@ -83,7 +85,8 @@
                 android:layout_marginBottom="4.0dip"
                 android:text="@string/search"
                 android:textColor="@color/not_use_tab_color"
-                android:textSize="11.0dip" />
+                android:textSize="11.0dip"
+                android:fontFamily="@font/sans_medium"/>
         </LinearLayout>
 
         <LinearLayout
@@ -108,7 +111,8 @@
                 android:layout_marginBottom="4.0dip"
                 android:text="@string/my"
                 android:textColor="@color/not_use_tab_color"
-                android:textSize="11.0dip" />
+                android:textSize="11.0dip"
+                android:fontFamily="@font/sans_medium"/>
         </LinearLayout>
 
     </LinearLayout>
