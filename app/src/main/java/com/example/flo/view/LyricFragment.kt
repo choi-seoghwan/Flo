@@ -1,5 +1,6 @@
 package com.example.flo.view
 
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.flo.adapter.LyricsAdapter
@@ -7,7 +8,13 @@ import com.example.flo.R
 import com.example.flo.base.BaseKotlinFragment
 import com.example.flo.databinding.FragmentMainBinding
 import com.example.flo.viewmodel.MainViewModel
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_lyrics.*
+import kotlinx.android.synthetic.main.layout_main_player.*
+import kotlinx.android.synthetic.main.layout_main_player_bottom.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -19,9 +26,9 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
     private val TAG = "LyricFragment"
 
     private val lyricsAdapter: LyricsAdapter by inject()
+    private lateinit var player: SimpleExoPlayer
 
     override fun initStartView() {
-        main_player_lyrics_controller.player = viewModel.musicPlayerLiveData.value
         lyrics_recyclerview.run {
             adapter = lyricsAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -29,6 +36,23 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
     }
 
     override fun initDataBinding() {
+        // Music Player.
+        viewModel.musicPlayerLiveData.observe(this, Observer { it ->
+            player = it
+            main_player_lyrics_controller.player = player
+            Log.d(TAG, "sliding panel state : $it.repeatMode")
+            when (it.repeatMode) {
+                ExoPlayer.REPEAT_MODE_OFF -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
+                }
+                ExoPlayer.REPEAT_MODE_ALL -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_1)
+                }
+                ExoPlayer.REPEAT_MODE_ONE -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
+                }
+            }
+        })
         viewModel.musicResponseLiveData.observe(this, Observer { music ->
             main_player_lyrics_title.text = music.title
             main_player_lyrics_artist.text = music.singer
@@ -44,13 +68,13 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
             lyrics_recyclerview.scrollToPosition(position + 4)
             lyricsAdapter.notifyDataSetChanged()
         })
-        // Jump to Same Music - Other Position
         viewModel.selectedLyricPosition.observe(this, Observer {
             lyricsAdapter.notifyDataSetChanged()
         })
     }
 
     override fun initAfterBinding() {
+
         main_player_lyrics_close.setOnClickListener {
             activity?.onBackPressed()
         }
@@ -61,6 +85,20 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
                 }
             }
         })
+        main_player_repeat.setOnClickListener {
+            when (player.repeatMode) {
+                ExoPlayer.REPEAT_MODE_OFF -> {
+                    player.repeatMode = ExoPlayer.REPEAT_MODE_ALL
+                }
+                ExoPlayer.REPEAT_MODE_ALL -> {
+                    player.repeatMode = ExoPlayer.REPEAT_MODE_ONE
+                }
+                ExoPlayer.REPEAT_MODE_ONE -> {
+                    player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
+                }
+            }
+            viewModel.setPlayer(player)
+        }
     }
 
     companion object {

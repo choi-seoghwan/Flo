@@ -34,8 +34,11 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
     val musicPlayerLiveData: LiveData<SimpleExoPlayer>
         get() = _musicPlayerLiveData
 
-    fun setPlayer(context: Context) {
+    fun initPlayer(context: Context) {
         _musicPlayerLiveData.postValue(SimpleExoPlayer.Builder(context).build())
+    }
+    fun setPlayer(player: SimpleExoPlayer){
+        _musicPlayerLiveData.postValue(player)
     }
 
     // music
@@ -109,6 +112,7 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
     fun setSelectLyricPosition(time: Long) {
         _selectedLyricPosition.postValue(time)
     }
+
 
     internal fun buildMediaSource(uri: Uri, context: Context): MediaSource {
         var userAgent: String = Util.getUserAgent(context, "project_name")

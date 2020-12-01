@@ -1,6 +1,7 @@
 package com.example.flo.view
 
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
@@ -40,7 +41,6 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
         fragmentTransaction.add(main_screen.id, MainFragment.newInstance()).commit()
 
         viewModel.selectTab("HOME")
-        viewModel.setPlayer(this.applicationContext)
         mainplayer_lyrics.run {
             adapter = lyricsAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -61,10 +61,27 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
             }
         })
 
-        // Music Player.
+        // Music Player
         viewModel.musicPlayerLiveData.observe(this, Observer { it ->
             player = it
-            mini_player.player = player
+            if (sliding_layout.panelState == PanelState.COLLAPSED) {
+                mini_player.player = player
+                main_player_bottom.player = null
+            } else {
+                mini_player.player = null
+                main_player_bottom.player = player
+            }
+            when (player.repeatMode) {
+                ExoPlayer.REPEAT_MODE_OFF -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
+                }
+                ExoPlayer.REPEAT_MODE_ALL -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_1)
+                }
+                ExoPlayer.REPEAT_MODE_ONE -> {
+                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
+                }
+            }
         })
 
         // Music Data setting( title, artist, album-image, lyrics, player(main, mini) )
@@ -81,17 +98,13 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
 
                 //가사
                 viewModel.setLyricInfoList(music.lyrics)
-                if(music.lyrics.isNotEmpty()) main_player_lyrics_click.text = ""
+                if (music.lyrics.isNotEmpty()) main_player_lyrics_click.text = ""
 
                 //뮤직 플레이어
-                val mediaSource: MediaSource = viewModel.buildMediaSource(Uri.parse(music.file), this)
+                val mediaSource: MediaSource =
+                    viewModel.buildMediaSource(Uri.parse(music.file), this)
                 player.setMediaSource(mediaSource)
                 player.prepare()
-
-                // User Data가 나중에 오면 할것
-                main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
-                main_player_repeat.tag = R.string.player_repeat_n
-                player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
             }
         })
 
@@ -128,6 +141,9 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun initAfterBinding() {
 
+        // Player
+        viewModel.initPlayer(this.applicationContext)
+
         // Main Tab Click.
         landingTabClickListener()
 
@@ -147,19 +163,14 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
                     mini_player.visibility = View.VISIBLE
                     main_player.visibility = View.GONE
                     mini_player_title.isSelected = true
-
-                    mini_player.player = player
-                    main_player_bottom.player = null
-
                 } else {
                     main_tab.visibility = View.GONE
                     main_player.visibility = View.VISIBLE
                     mini_player.visibility = View.GONE
                     main_player_title.isSelected = true
-
-                    mini_player.player = null
-                    main_player_bottom.player = player
                 }
+                Log.d(TAG, "sliding panel state : $newState")
+                viewModel.setPlayer(player)
             }
         })
         main_player_lyrics_click.setOnClickListener {
@@ -177,23 +188,18 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
             main_player_dislike.isSelected = !main_player_dislike.isSelected
         }
         main_player_repeat.setOnClickListener {
-            when (main_player_repeat.tag) {
-                R.string.player_repeat_n -> {
-                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat)
-                    main_player_repeat.tag = R.string.player_repeat_a
+            when (player.repeatMode) {
+                ExoPlayer.REPEAT_MODE_OFF -> {
                     player.repeatMode = ExoPlayer.REPEAT_MODE_ALL
                 }
-                R.string.player_repeat_1 -> {
-                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_n)
-                    main_player_repeat.tag = R.string.player_repeat_n
-                    player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
-                }
-                R.string.player_repeat_a -> {
-                    main_player_repeat.setImageResource(R.drawable.btn_main_player_repeat_1)
-                    main_player_repeat.tag = R.string.player_repeat_1
+                ExoPlayer.REPEAT_MODE_ALL -> {
                     player.repeatMode = ExoPlayer.REPEAT_MODE_ONE
                 }
+                ExoPlayer.REPEAT_MODE_ONE -> {
+                    player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
+                }
             }
+            viewModel.setPlayer(player)
         }
     }
 
