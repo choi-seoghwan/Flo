@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="main_tab_height">50.0dip</dimen>
     <!-- MINI PLAYER -->
     <dimen name="mini_player_height">56.0dip</dimen>
@@ -26,4 +26,6 @@
     <dimen name="seek_bar_thumb_size">14.0dip</dimen>
 
     <dimen name="main_player_list_bottom_height">80.0dip</dimen>
+    <dimen name="design_bottom_navigation_text_size" tools:override="true">12dp</dimen>
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12dp</dimen>
 </resources>

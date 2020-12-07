@@ -3,8 +3,12 @@ package com.example.flo.viewmodel
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import android.view.MenuItem
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.flo.R
 import com.example.flo.base.BaseKotlinViewModel
 import com.example.flo.model.DataModel
 import com.example.flo.model.response.LyricsInfo
@@ -14,20 +18,17 @@ import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.util.Util
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
+import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.layout_main_player.*
+
 
 class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
 
     // Main Tab
     private val TAG = "MainViewModel"
-    private val mutableSelectedTab = MutableLiveData<String>()
-    val selectedTab: LiveData<String> get() = mutableSelectedTab
-    fun selectTab(tab: String) {
-        if (selectedTab.value != tab) {
-            mutableSelectedTab.postValue(tab)
-        }
-    }
 
     // player
     private val _musicPlayerLiveData = MutableLiveData<SimpleExoPlayer>()
@@ -36,9 +37,6 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
 
     fun initPlayer(context: Context) {
         _musicPlayerLiveData.postValue(SimpleExoPlayer.Builder(context).build())
-    }
-    fun setPlayer(player: SimpleExoPlayer){
-        _musicPlayerLiveData.postValue(player)
     }
 
     // music
@@ -113,12 +111,41 @@ class MainViewModel(private val model: DataModel) : BaseKotlinViewModel() {
         _selectedLyricPosition.postValue(time)
     }
 
-
     internal fun buildMediaSource(uri: Uri, context: Context): MediaSource {
         var userAgent: String = Util.getUserAgent(context, "project_name")
         return ExtractorMediaSource.Factory(DefaultHttpDataSourceFactory(userAgent))
             .createMediaSource(
                 uri
             )
+    }
+
+    private val _selectedMenu = MutableLiveData<MenuItem>()
+    val selectedMenu: LiveData<MenuItem>
+        get() = _selectedMenu
+
+    fun selectMenu(item: MenuItem) {
+        if (selectedMenu.value != item) {
+            _selectedMenu.postValue(item)
+        }
+    }
+
+    private val _statePlayer = MutableLiveData<Boolean>()
+    val statePlayer: LiveData<Boolean>
+        get() = _statePlayer
+
+    fun setStatePlayer(currentState: SlidingUpPanelLayout.PanelState) {
+        // Collapse = False
+        // Expend = True
+        val state = currentState != SlidingUpPanelLayout.PanelState.COLLAPSED
+        if (state != _statePlayer.value)
+            _statePlayer.postValue(state)
+    }
+
+    companion object {
+        @BindingAdapter("bind:imageUrl")
+        @JvmStatic
+        fun loadImage(view: ImageView, url: String?) {
+            Picasso.with(view.context).load(url).into(view)
+        }
     }
 }

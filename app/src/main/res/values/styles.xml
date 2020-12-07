@@ -22,4 +22,10 @@
         <item name="android:thumb">@drawable/seek_bar_thumb_selector</item>
         <item name="android:splitTrack">false</item>
     </style>
+
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/sans_medium</item>
+    </style>
+
 </resources>

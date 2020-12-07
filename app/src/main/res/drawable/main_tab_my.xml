@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:drawable="@drawable/icon_navi_my" />
-    <item android:drawable="@drawable/icon_navi_my_n" />
-</selector>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:bottom="4dp"
+        android:top="4dp">
+        <selector xmlns:android="http://schemas.android.com/apk/res/android">
+            <item
+                android:drawable="@drawable/icon_navi_my"
+                android:state_selected="true" />
+            <item android:drawable="@drawable/icon_navi_my_n" />
+        </selector>
+    </item>
+</layer-list>

@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="music"
+            type="com.example.flo.model.response.MusicResponse" />
+    </data>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -32,62 +41,15 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/mini_player_button_height">
 
-                <LinearLayout
+                <com.google.android.exoplayer2.ui.PlayerControlView
                     android:id="@+id/mini_player_controller"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/mini_player_button_height"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:id="@+id/mini_player_previous"
-                        android:layout_width="33.0dip"
-                        android:layout_height="45.0dip"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="@string/player_prev"
-                        android:src="@drawable/mini_player_previous" />
-
-                    <ImageButton
-                        android:id="@+id/exo_play"
-                        android:layout_width="43.0dip"
-                        android:layout_height="45.0dip"
-                        android:layout_marginLeft="4.0dip"
-                        android:layout_marginRight="4.0dip"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/btn_mini_player_play" />
-
-                    <ImageButton
-                        android:id="@+id/exo_pause"
-                        android:visibility="gone"
-                        android:layout_width="43.0dip"
-                        android:layout_height="45.0dip"
-                        android:layout_marginLeft="4.0dip"
-                        android:layout_marginRight="4.0dip"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/btn_mini_player_pause" />
-
-                    <ImageButton
-                        android:id="@+id/mini_player_next"
-                        android:layout_width="33.0dip"
-                        android:layout_height="45.0dip"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="@string/player_next"
-                        android:src="@drawable/mini_player_next" />
-
-                    <ImageButton
-                        android:id="@+id/mini_player_list"
-                        android:layout_width="59.0dip"
-                        android:layout_height="fill_parent"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="@string/player_list"
-                        android:paddingLeft="16.0dip"
-                        android:paddingTop="9.0dip"
-                        android:paddingRight="16.0dip"
-                        android:paddingBottom="9.0dip"
-                        android:src="@drawable/mini_player_playlist" />
-                </LinearLayout>
+                    app:show_timeout="0"
+                    app:hide_on_touch="false"
+                    app:controller_layout_id="@layout/layout_mini_player_controller"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -111,6 +73,7 @@
 
                             <TextView
                                 android:id="@+id/mini_player_title"
+                                android:text="@{music.title}"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
@@ -133,6 +96,7 @@
 
                             <TextView
                                 android:id="@+id/mini_player_singer"
+                                android:text="@{music.singer}"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"

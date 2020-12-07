@@ -2,6 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="isSlidingUp" type="boolean" />
+    </data>
 
     <RelativeLayout
         android:id="@+id/main_layout"
@@ -31,39 +35,34 @@
                 android:background="@color/mini_player_bg"
                 android:orientation="vertical">
 
-                <com.google.android.exoplayer2.ui.PlayerControlView
-                    android:id="@+id/mini_player"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    app:show_timeout="0"
-                    app:hide_on_touch="false"
-                    app:controller_layout_id="@layout/layout_mini_player"/>
-                <!--
-                <com.google.android.exoplayer2.ui.PlayerControlView
-                    android:id="@+id/main_player"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:visibility="gone"
-                    app:show_timeout="0"
-                    app:hide_on_touch="false"
-                    app:controller_layout_id="@layout/layout_main_player_track"/>
-
                 <include layout="@layout/layout_mini_player"
-                    android:id="@+id/mini_player"/>
-                -->
+                    android:id="@+id/mini_player"
+                    android:visibility="@{isSlidingUp ? View.GONE : View.VISIBLE}"/>
+
                 <include layout="@layout/layout_main_player"
-                    android:id="@+id/main_player"/>
+                    android:id="@+id/main_player"
+                    android:visibility="@{isSlidingUp ? View.VISIBLE : View.GONE}"/>
 
 
             </LinearLayout>
 
         </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
-        <com.example.flo.view.ui.MainTabLayout
-            android:id="@+id/main_tab"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom_navigation"
+            android:visibility="@{isSlidingUp ? View.GONE : View.VISIBLE}"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/main_tab_height"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/black"
+            android:theme="@style/Widget.BottomNavigationView"
+            app:itemIconSize="30dp"
+            app:elevation="0.0dip"
+            app:itemIconTint="@color/bottom_navigation_item_state_color"
+            app:itemTextColor="@color/bottom_navigation_item_state_text_color"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/navigation_menu"
+            android:fitsSystemWindows="true"/>
 
         <FrameLayout
             android:id="@+id/lyric_screen"

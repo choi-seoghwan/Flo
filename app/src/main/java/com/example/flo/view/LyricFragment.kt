@@ -6,19 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.flo.adapter.LyricsAdapter
 import com.example.flo.R
 import com.example.flo.base.BaseKotlinFragment
-import com.example.flo.databinding.FragmentMainBinding
+import com.example.flo.databinding.FragmentLyricsBinding
 import com.example.flo.viewmodel.MainViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.sothree.slidinguppanel.SlidingUpPanelLayout
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_lyrics.*
-import kotlinx.android.synthetic.main.layout_main_player.*
 import kotlinx.android.synthetic.main.layout_main_player_bottom.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
+class LyricFragment : BaseKotlinFragment<FragmentLyricsBinding, MainViewModel>() {
     override val layoutResourceId: Int
         get() = R.layout.fragment_lyrics
     override val viewModel: MainViewModel by sharedViewModel()
@@ -86,24 +83,6 @@ class LyricFragment : BaseKotlinFragment<FragmentMainBinding, MainViewModel>() {
                 }
             }
         })
-        main_player_repeat.setOnClickListener {
-            when (player.repeatMode) {
-                ExoPlayer.REPEAT_MODE_OFF -> {
-                    player.repeatMode = ExoPlayer.REPEAT_MODE_ALL
-                }
-                ExoPlayer.REPEAT_MODE_ALL -> {
-                    player.repeatMode = ExoPlayer.REPEAT_MODE_ONE
-                }
-                ExoPlayer.REPEAT_MODE_ONE -> {
-                    player.repeatMode = ExoPlayer.REPEAT_MODE_OFF
-                }
-            }
-            viewModel.setPlayer(player)
-        }
-        main_player_shuffle.setOnClickListener {
-            player.shuffleModeEnabled = !player.shuffleModeEnabled
-            viewModel.setPlayer(player)
-        }
     }
 
     companion object {
